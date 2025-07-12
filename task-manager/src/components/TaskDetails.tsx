@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { T, TextField, TextArea, Select, Button } from '@admiral-ds/react-ui';
+import { T, TextField, TextArea, Select, Button, Option } from '@admiral-ds/react-ui';
 import { useTasks } from '../context/TaskContext';
 import type { ITask } from '../types/task';
 
@@ -42,7 +42,7 @@ export const TaskDetails = ({ taskId }: TaskDetailsProps) => {
   }, [taskId, getTaskById, navigate]);
 
   if (!task) {
-    return <T as="p" font={'Header/H1'}>Загрузка...</T>;
+    return <T font='Main/L'>Загрузка...</T>;
   }
 
   const handleChange = (field: keyof ITask, value: string) => {
@@ -66,27 +66,46 @@ export const TaskDetails = ({ taskId }: TaskDetailsProps) => {
         required
       />
       <TextArea
+        placeholder="Описание"
         value={task.description}
         onChange={(e) => handleChange('description', e.target.value)}
         style={{ minHeight: '120px' }}
       />
-      {/* <Select
-        value={task.category}
-        onChange={(e) => handleChange('category', e.target.value)}
-        options={CATEGORIES}
-      />
       <Select
-        label="Статус"
+        placeholder="Статус"
         value={task.status}
-        onChange={(e) => handleChange('status', e.target.value)}
-        options={STATUSES}
-      />
+        onChange={(value) => handleChange('status', value.target.value)}
+      >
+        {STATUSES.map((status) => (
+          <Option key={status} value={status}>
+            {status}
+          </Option>
+        ))}
+      </Select>
+
       <Select
-        label="Приоритет"
+        placeholder="Категория"
+        value={task.category}
+        onChange={(value) => handleChange('category', value.target.value)}
+      >
+        {CATEGORIES.map((category) => (
+          <Option key={category} value={category}>
+            {category}
+          </Option>
+        ))}
+      </Select>
+
+      <Select
+        placeholder="Приоритет"
         value={task.priority}
-        onChange={(e) => handleChange('priority', e.target.value)}
-        options={PRIORITIES}
-      /> */}
+        onChange={(value) => handleChange('priority', value.target.value)}
+      >
+        {PRIORITIES.map((priority) => (
+          <Option key={priority} value={priority}>
+            {priority}
+          </Option>
+        ))}
+      </Select>
       <ButtonGroup>
         <Button type="submit" appearance="primary">Сохранить</Button>
         <Button type="button" appearance="secondary" onClick={() => navigate('/')}>Отмена</Button>

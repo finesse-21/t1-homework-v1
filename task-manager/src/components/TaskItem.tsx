@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { T, Tag, Button } from '@admiral-ds/react-ui';
+import { T, Tag, Button, type TagKind } from '@admiral-ds/react-ui';
 import type { ITask } from '../types/task';
 
 const StyledCard = styled.div`
@@ -12,6 +12,7 @@ const StyledCard = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  width: 400px;
 `;
 
 const TagsWrapper = styled.div`
@@ -27,6 +28,12 @@ interface TaskItemProps {
 export const TaskItem = ({ task }: TaskItemProps) => {
   const navigate = useNavigate();
 
+  const priorityColorMap: Record<string, TagKind> = {
+    Low: 'neutral',
+    Medium: 'warning',
+    High: 'danger',
+  };
+
   return (
     <StyledCard>
       <T font="Subtitle/Subtitle 1">{task.title}</T>
@@ -34,6 +41,9 @@ export const TaskItem = ({ task }: TaskItemProps) => {
       <TagsWrapper>
         <Tag kind="primary">{task.category}</Tag>
         <Tag kind="success">{task.status}</Tag>
+        <Tag kind={priorityColorMap[task.priority]}>
+          {task.priority}
+        </Tag>
       </TagsWrapper>
       <Button
         dimension="s"

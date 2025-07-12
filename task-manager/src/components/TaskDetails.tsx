@@ -36,7 +36,6 @@ export const TaskDetails = ({ taskId }: TaskDetailsProps) => {
     if (currentTask) {
       setTask(currentTask);
     } else {
-      // Если задача не найдена, можно перенаправить на главную
       navigate('/');
     }
   }, [taskId, getTaskById, navigate]);

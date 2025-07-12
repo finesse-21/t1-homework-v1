@@ -3,13 +3,20 @@ import { T } from '@admiral-ds/react-ui';
 import { TaskList } from '../components/TaskList';
 
 const PageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   padding: 24px;
-  max-width: 1200px;
   margin: 0 auto;
+  min-height: 100vh;
+  background-color: var(--color-bg-secondary);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 `;
 
 const Title = styled(T)`
-  margin-bottom: 24px;
+  margin-bottom: 32px;
+  text-align: center;
+  color: var(--color-text-primary);
 `;
 
 export const HomePage = () => {

@@ -5,7 +5,6 @@ import { TaskDetails } from '../components/TaskDetails';
 
 const PageWrapper = styled.div`
   padding: 24px;
-  max-width: 1200px;
   margin: 0 auto;
 `;
 

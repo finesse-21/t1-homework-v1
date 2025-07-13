@@ -3,11 +3,11 @@ import type { ReactNode } from 'react';
 import type { ITask } from '../types/task';
 
 const initialTasks: ITask[] = [
-  { id: '1', title: 'Исправить баг в авторизации', description: 'Кнопка "Войти" неактивна при верном пароле', category: 'Bug', status: 'To Do', priority: 'High' },
-  { id: '2', title: 'Разработать страницу профиля', description: 'Добавить аватар, имя и почту', category: 'Feature', status: 'In Progress', priority: 'Medium' },
-  { id: '3', title: 'Написать документацию для API', description: 'Описать все эндпоинты для фронтенда', category: 'Documentation', status: 'Done', priority: 'Low' },
-  { id: '4', title: 'Провести рефакторинг компонента Card', category: 'Refactor', status: 'To Do', priority: 'Medium' },
-  { id: '5', title: 'Написать тесты для хука useTasks', category: 'Test', status: 'In Progress', priority: 'High' },
+  { id: '1', title: 'Сделать 1 домашнее задание в ИТ-Лагере', description: 'Создать данный менеджер задач', category: 'Bug', status: 'To Do', priority: 'High' },
+  { id: '2', title: 'Поучавствовать в 1 воркшопе', description: 'Перед этим сделать 1 дз', category: 'Feature', status: 'In Progress', priority: 'Medium' },
+  { id: '3', title: 'Пройти весь курс в лагере', description: '', category: 'Documentation', status: 'Done', priority: 'Low' },
+  { id: '4', title: 'Написать 1 тест по frontend', category: 'Test', status: 'To Do', priority: 'Medium' },
+  { id: '5', title: 'Пройти на стажировку в Т1', category: 'Refactor', status: 'In Progress', priority: 'High' },
 ];
 
 interface ITaskContext {

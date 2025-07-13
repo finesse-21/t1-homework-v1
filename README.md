@@ -1,69 +1,78 @@
-# React + TypeScript + Vite
+# Task Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Task Manager — это простое одностраничное приложение (SPA) для управления задачами. Приложение позволяет просматривать, фильтровать и редактировать задачи по категориям, статусам и приоритетам.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Возможности
 
-## Expanding the ESLint configuration
+- Просмотр списка задач
+- Фильтрация по статусу, категории и приоритету
+- Просмотр и редактирование деталей задачи
+- Адаптивная вёрстка
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+##  Технологии
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- **React + TypeScript**
+- **Vite** — сборщик проекта
+- **@admiral-ds/react-ui** — компонентная библиотека
+- **styled-components** — CSS-in-JS для стилизации
+- **React Router DOM** — маршрутизация
+- **Context API** — управление состоянием задач
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## Структура проекта
+
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+t1-homework-v1/
+│
+├── public/                 # Публичные файлы
+├── src/
+│   ├── components/         # Переиспользуемые UI-компоненты
+│   ├── context/            # Контекст задач (TaskContext)
+│   ├── pages/              # Страницы приложения (Home, TaskDetail)
+│   ├── types/              # Типы TypeScript
+│   ├── constants/          # Константы (статусы, категории и пр.)
+│   └── utils/              # Утилиты и вспомогательные функции
+├── index.html
+├── vite.config.ts
+└── tsconfig.json
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+````
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## Установка и запуск
+
+### 1. Клонируй репозиторий
+
+```bash
+git clone https://github.com/finesse-21/t1-homework-v1.git
+cd t1-homework-v1
+````
+
+### 2. Установи зависимости
+
+```bash
+npm install
+```
+
+### 3. Запусти проект в режиме разработки
+
+```bash
+npm run dev
+```
+
+Открой в браузере: [http://localhost:5173](http://localhost:5173)
+
+---
+
+## Сборка проекта
+
+```bash
+npm run dev
 ```

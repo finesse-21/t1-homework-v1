@@ -4,28 +4,13 @@ import styled from 'styled-components';
 import {
   T,
   TextField,
-  SelectField,
-  Option,
   Button,
 } from '@admiral-ds/react-ui';
 import { useTasks } from '../context/TaskContext';
 import type { ITask } from '../types/task';
-
-const FormCard = styled.form`
-  background-color: #fcfcfd;
-  border: 1px solid #d1d4d6;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  box-sizing: border-box;
-  width: 100%;
-`;
+import { CATEGORIES, STATUSES, PRIORITIES } from '../constants/taskOptions';
+import { SelectFieldBlock } from './SelectFieldBlock';
+import { Card } from './ui/Card';
 
 const ButtonGroup = styled.div`
   display: flex;
@@ -38,10 +23,6 @@ const FieldsGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
 `;
-
-const CATEGORIES = ['Bug', 'Feature', 'Documentation', 'Refactor', 'Test'];
-const STATUSES = ['To Do', 'In Progress', 'Done'];
-const PRIORITIES = ['Low', 'Medium', 'High'];
 
 interface TaskDetailsProps {
   taskId: string;
@@ -78,7 +59,12 @@ export const TaskDetails = ({ taskId }: TaskDetailsProps) => {
   };
 
   return (
-    <FormCard onSubmit={handleSubmit}>
+    <Card
+      as="form"
+      onSubmit={handleSubmit}
+      padding="40px"
+      maxWidth="1000px"
+    >
       <TextField
         label="Заголовок"
         value={task.title}
@@ -95,41 +81,26 @@ export const TaskDetails = ({ taskId }: TaskDetailsProps) => {
       />
 
       <FieldsGrid>
-        <SelectField
+        <SelectFieldBlock
           label="Статус"
           value={task.status}
-          onChange={(value) => handleChange('status', value.target.value)}
-        >
-          {STATUSES.map((status) => (
-            <Option key={status} value={status}>
-              {status}
-            </Option>
-          ))}
-        </SelectField>
+          options={STATUSES}
+          onChange={(v) => handleChange('status', v)}
+        />
 
-        <SelectField
+        <SelectFieldBlock
           label="Категория"
           value={task.category}
-          onChange={(value) => handleChange('category', value.target.value)}
-        >
-          {CATEGORIES.map((category) => (
-            <Option key={category} value={category}>
-              {category}
-            </Option>
-          ))}
-        </SelectField>
+          options={CATEGORIES}
+          onChange={(v) => handleChange('category', v)}
+        />
 
-        <SelectField
+        <SelectFieldBlock
           label="Приоритет"
           value={task.priority}
-          onChange={(value) => handleChange('priority', value.target.value)}
-        >
-          {PRIORITIES.map((priority) => (
-            <Option key={priority} value={priority}>
-              {priority}
-            </Option>
-          ))}
-        </SelectField>
+          options={PRIORITIES}
+          onChange={(v) => handleChange('priority', v)}
+        />
       </FieldsGrid>
 
       <ButtonGroup>
@@ -148,6 +119,6 @@ export const TaskDetails = ({ taskId }: TaskDetailsProps) => {
           Отмена
         </Button>
       </ButtonGroup>
-    </FormCard>
+    </Card>
   );
 };

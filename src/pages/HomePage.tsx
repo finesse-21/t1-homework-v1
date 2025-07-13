@@ -1,9 +1,12 @@
 import { useState, useMemo } from 'react';
 import styled from 'styled-components';
-import { T, Button, SelectField, Option } from '@admiral-ds/react-ui';
+import { T, Button } from '@admiral-ds/react-ui';
 import { useTasks } from '../context/TaskContext';
 import { TaskList } from '../components/TaskList';
 import { LayoutWrapper } from '../components/LayoutWrapper';
+import { SelectFieldBlock } from '../components/SelectFieldBlock';
+import { STATUSES, CATEGORIES, PRIORITIES } from '../constants/taskOptions';
+import { filterTasks } from '../utils/filterTasks';
 
 const TitleWrapper = styled.div`
   display: flex;
@@ -39,10 +42,6 @@ const FilterContainer = styled.div`
   border: 1px solid #d1d4d6;
 `;
 
-const CATEGORIES = ['Bug', 'Feature', 'Documentation', 'Refactor', 'Test'];
-const STATUSES = ['To Do', 'In Progress', 'Done'];
-const PRIORITIES = ['Low', 'Medium', 'High'];
-
 export const HomePage = () => {
   const { tasks } = useTasks();
   const [isFilterVisible, setIsFilterVisible] = useState(false);
@@ -61,14 +60,9 @@ export const HomePage = () => {
     setFilters({ status: 'All', category: 'All', priority: 'All' });
   };
 
-  const filteredTasks = useMemo(() => {
-    return tasks.filter((task) => {
-      const statusMatch = filters.status === 'All' || task.status === filters.status;
-      const categoryMatch = filters.category === 'All' || task.category === filters.category;
-      const priorityMatch = filters.priority === 'All' || task.priority === filters.priority;
-      return statusMatch && categoryMatch && priorityMatch;
-    });
-  }, [tasks, filters]);
+
+  const filteredTasks = useMemo(() => filterTasks(tasks, filters), [tasks, filters]);
+
 
   return (
     <LayoutWrapper>
@@ -85,44 +79,33 @@ export const HomePage = () => {
 
       {isFilterVisible && (
         <FilterContainer>
-          <SelectField
+          <SelectFieldBlock
             label="Статус"
             value={filters.status}
-            onChange={(e) => handleFilterChange('status', e.target.value)}
-          >
-            <Option value="All">Все</Option>
-            {STATUSES.map((status) => (
-              <Option key={status} value={status}>{status}</Option>
-            ))}
-          </SelectField>
+            options={STATUSES}
+            onChange={(v) => handleFilterChange('status', v)}
+            allowAll
+          />
 
-          <SelectField
+          <SelectFieldBlock
             label="Категория"
             value={filters.category}
-            onChange={(e) => handleFilterChange('category', e.target.value)}
-          >
-            <Option value="All">Все</Option>
-            {CATEGORIES.map((category) => (
-              <Option key={category} value={category}>{category}</Option>
-            ))}
-          </SelectField>
+            options={CATEGORIES}
+            onChange={(v) => handleFilterChange('category', v)}
+            allowAll
+          />
 
-          <SelectField
+          <SelectFieldBlock
             label="Приоритет"
             value={filters.priority}
-            onChange={(e) => handleFilterChange('priority', e.target.value)}
-          >
-            <Option value="All">Все</Option>
-            {PRIORITIES.map((priority) => (
-              <Option key={priority} value={priority}>{priority}</Option>
-            ))}
-          </SelectField>
+            options={PRIORITIES}
+            onChange={(v) => handleFilterChange('priority', v)}
+            allowAll
+          />
 
-          <div style={{ display: 'flex', alignItems: 'flex-end' }}>
-            <Button appearance="secondary" onClick={resetFilters}>
-              Сбросить
-            </Button>
-          </div>
+          <Button appearance="secondary" onClick={resetFilters}>
+            Сбросить
+          </Button>
         </FilterContainer>
       )}
 

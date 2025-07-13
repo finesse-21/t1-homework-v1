@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { useTasks } from '../context/TaskContext';
 import { TaskItem } from './TaskItem';
+import type { ITask } from '../types/task'; 
 
 const TaskGrid = styled.div`
   display: flex;
@@ -12,9 +12,11 @@ const TaskGrid = styled.div`
   padding: 0 16px;
 `;
 
-export const TaskList = () => {
-  const { tasks } = useTasks();
+interface TaskListProps {
+  tasks: ITask[];
+}
 
+export const TaskList = ({ tasks }: TaskListProps) => {
   return (
     <TaskGrid>
       {tasks.map((task) => (

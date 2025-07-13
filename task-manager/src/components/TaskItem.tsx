@@ -40,8 +40,8 @@ export const TaskItem = ({ task }: TaskItemProps) => {
       <T font="Subtitle/Subtitle 1">{task.title}</T>
       {task.description && <T font="Body/Body 2 Long">{task.description}</T>}
       <TagsWrapper>
-        <Tag kind="primary">{task.category}</Tag>
         <Tag kind="success">{task.status}</Tag>
+        <Tag kind="primary">{task.category}</Tag>
         <Tag kind={priorityColorMap[task.priority]}>{task.priority}</Tag>
       </TagsWrapper>
       <Button

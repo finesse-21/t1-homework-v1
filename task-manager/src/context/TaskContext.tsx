@@ -6,6 +6,8 @@ const initialTasks: ITask[] = [
   { id: '1', title: 'Исправить баг в авторизации', description: 'Кнопка "Войти" неактивна при верном пароле', category: 'Bug', status: 'To Do', priority: 'High' },
   { id: '2', title: 'Разработать страницу профиля', description: 'Добавить аватар, имя и почту', category: 'Feature', status: 'In Progress', priority: 'Medium' },
   { id: '3', title: 'Написать документацию для API', category: 'Documentation', status: 'Done', priority: 'Low' },
+  { id: '3', title: 'Написать документацию для API', category: 'Documentation', status: 'Done', priority: 'Low' },
+  { id: '3', title: 'Написать документацию для API', category: 'Documentation', status: 'Done', priority: 'Low' },
 ];
 
 interface ITaskContext {

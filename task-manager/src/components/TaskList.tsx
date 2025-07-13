@@ -5,6 +5,8 @@ import { TaskItem } from './TaskItem';
 const TaskGrid = styled.div`
   display: flex;
   gap: 24px;
+  width: 100%;
+  flex-wrap: wrap;
 `;
 
 export const TaskList = () => {

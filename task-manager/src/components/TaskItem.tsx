@@ -4,15 +4,16 @@ import { T, Tag, Button, type TagKind } from '@admiral-ds/react-ui';
 import type { ITask } from '../types/task';
 
 const StyledCard = styled.div`
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
-  padding: 16px;
+  border: 1px solid #252627;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  background-color: #C9CACD;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  width: 400px;
+  width: 300px;
+  box-sizing: border-box;
 `;
 
 const TagsWrapper = styled.div`
@@ -51,7 +52,7 @@ export const TaskItem = ({ task }: TaskItemProps) => {
         onClick={() => navigate(`/task/${task.id}`)}
         style={{ marginTop: 'auto' }}
       >
-        View Task
+        Редактировать
       </Button>
     </StyledCard>
   );

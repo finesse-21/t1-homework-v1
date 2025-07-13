@@ -6,7 +6,7 @@ import { LayoutWrapper } from '../components/LayoutWrapper';
 const Title = styled(T)`
   margin-bottom: 32px;
   text-align: center;
-  color: var(--color-text-primary);
+  color: #fcfcfd;
 `;
 
 export const HomePage = () => {

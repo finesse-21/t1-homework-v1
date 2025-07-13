@@ -4,16 +4,16 @@ import { T, Tag, Button, type TagKind } from '@admiral-ds/react-ui';
 import type { ITask } from '../types/task';
 
 const StyledCard = styled.div`
-  border: 1px solid #252627;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-  background-color: #C9CACD;
-  padding: 20px;
+  background-color: #fcfcfd;
+  border: 1px solid #d1d4d6;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  width: 300px;
+  gap: 16px;
   box-sizing: border-box;
+  width: 350px;
 `;
 
 const TagsWrapper = styled.div`
@@ -42,9 +42,7 @@ export const TaskItem = ({ task }: TaskItemProps) => {
       <TagsWrapper>
         <Tag kind="primary">{task.category}</Tag>
         <Tag kind="success">{task.status}</Tag>
-        <Tag kind={priorityColorMap[task.priority]}>
-          {task.priority}
-        </Tag>
+        <Tag kind={priorityColorMap[task.priority]}>{task.priority}</Tag>
       </TagsWrapper>
       <Button
         dimension="s"

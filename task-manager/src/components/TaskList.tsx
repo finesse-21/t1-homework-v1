@@ -4,9 +4,12 @@ import { TaskItem } from './TaskItem';
 
 const TaskGrid = styled.div`
   display: flex;
-  gap: 24px;
-  width: 100%;
   flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 16px;
 `;
 
 export const TaskList = () => {

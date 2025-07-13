@@ -13,7 +13,8 @@ const StyledCard = styled.div`
   flex-direction: column;
   gap: 16px;
   box-sizing: border-box;
-  width: 350px;
+  width: 100%;
+  max-width: 350px;
 `;
 
 const TagsWrapper = styled.div`

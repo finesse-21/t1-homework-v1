@@ -12,6 +12,13 @@ const TitleWrapper = styled.div`
   width: 100%;
   max-width: 1100px;
   margin-bottom: 32px;
+
+  @media (max-width: 600px) {
+    flex-direction: column; 
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
 `;
 
 const Title = styled(T)`

@@ -28,7 +28,7 @@ export const TaskCreatePage = () => {
   return (
     <LayoutWrapper>
       <TaskDetailsForm
-        task={task}
+        task={{ ...task, id: '' }}
         onChange={setTask}
         onCancel={() => navigate('/')}
         onSave={handleSave}

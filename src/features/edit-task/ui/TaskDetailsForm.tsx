@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { T, TextField, Button } from '@admiral-ds/react-ui';
+import { TextField, Button } from '@admiral-ds/react-ui';
 import { Card } from '@shared/ui/Card';
 import { SelectFieldBlock } from '@shared/ui/SelectFieldBlock';
 import { CATEGORIES, STATUSES, PRIORITIES } from '@entities/config/taskOptions';

@@ -1,0 +1,94 @@
+import styled from 'styled-components';
+import { T, TextField, Button } from '@admiral-ds/react-ui';
+import { Card } from '@shared/ui/Card';
+import { SelectFieldBlock } from '@shared/ui/SelectFieldBlock';
+import { CATEGORIES, STATUSES, PRIORITIES } from '@entities/config/taskOptions';
+import type { ITask } from '@entities/task/model/task';
+
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+`;
+
+const FieldsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+`;
+
+interface Props {
+  task: ITask;
+  onChange: (task: ITask) => void;
+  onSave: () => void;
+  onCancel: () => void;
+}
+
+export const TaskDetailsForm = ({ task, onChange, onSave, onCancel }: Props) => {
+  const handleChange = (field: keyof ITask, value: string) => {
+    onChange({ ...task, [field]: value });
+  };
+
+  return (
+    <Card
+      as="form"
+      onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        onSave();
+      }}
+      padding="40px"
+      maxWidth="1000px"
+    >
+      <TextField
+        label="Заголовок"
+        value={task.title}
+        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+          handleChange('title', e.target.value)
+        }
+        required
+      />
+
+      <TextField
+        label="Описание"
+        placeholder="Опишите задачу подробнее..."
+        value={task.description}
+        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+          handleChange('description', e.target.value)
+        }
+        style={{ minHeight: '120px' }}
+      />
+
+      <FieldsGrid>
+        <SelectFieldBlock
+          label="Статус"
+          value={task.status}
+          options={STATUSES}
+          onChange={(v: string) => handleChange('status', v)}
+        />
+
+        <SelectFieldBlock
+          label="Категория"
+          value={task.category}
+          options={CATEGORIES}
+          onChange={(v: string) => handleChange('category', v)}
+        />
+
+        <SelectFieldBlock
+          label="Приоритет"
+          value={task.priority}
+          options={PRIORITIES}
+          onChange={(v: string) => handleChange('priority', v)}
+        />
+      </FieldsGrid>
+
+      <ButtonGroup>
+        <Button type="submit" appearance="primary" disabled={!task.title.trim()}>
+          Сохранить
+        </Button>
+        <Button type="button" appearance="secondary" onClick={onCancel}>
+          Отмена
+        </Button>
+      </ButtonGroup>
+    </Card>
+  );
+};

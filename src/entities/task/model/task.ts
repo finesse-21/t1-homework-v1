@@ -1,3 +1,4 @@
+export const __vite_touch = true;
 export type TaskCategory = 'Bug' | 'Feature' | 'Documentation' | 'Refactor' | 'Test';
 export type TaskStatus = 'To Do' | 'In Progress' | 'Done';
 export type TaskPriority = 'Low' | 'Medium' | 'High';

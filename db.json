@@ -1,0 +1,42 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Сделать 1 домашнее задание в ИТ-Лагере",
+      "description": "Создать данный менеджер задач",
+      "category": "Bug",
+      "status": "To Do",
+      "priority": "High"
+    },
+    {
+      "id": "2",
+      "title": "Поучавствовать в 1 воркшопе",
+      "description": "Перед этим сделать 1 дз",
+      "category": "Feature",
+      "status": "In Progress",
+      "priority": "Medium"
+    },
+    {
+      "id": "3",
+      "title": "Пройти весь курс в лагере",
+      "description": "",
+      "category": "Documentation",
+      "status": "Done",
+      "priority": "Low"
+    },
+    {
+      "id": "4",
+      "title": "Написать 1 тест по frontend",
+      "category": "Test",
+      "status": "To Do",
+      "priority": "Medium"
+    },
+    {
+      "id": "5",
+      "title": "Пройти на стажировку в Т1",
+      "category": "Refactor",
+      "status": "In Progress",
+      "priority": "High"
+    }
+  ]
+}

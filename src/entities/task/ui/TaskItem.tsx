@@ -4,6 +4,8 @@ import { T, Tag, Button } from '@admiral-ds/react-ui';
 import type { ITask } from '@entities/task/model/task';
 import { Card } from '@shared/ui/Card';
 import { priorityToColor } from '@entities/task/lib/priorityToColor';
+import { useAppDispatch } from '@shared/lib/hooks';
+import { deleteTask } from '@entities/task/model/taskSlice';
 
 const TagsWrapper = styled.div`
   display: flex;
@@ -17,6 +19,7 @@ interface TaskItemProps {
 
 export const TaskItem = ({ task }: TaskItemProps) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   return (
     <Card maxWidth="350px">
@@ -34,6 +37,15 @@ export const TaskItem = ({ task }: TaskItemProps) => {
         style={{ marginTop: 'auto' }}
       >
         Редактировать
+      </Button>
+
+      <Button
+        dimension="s"
+        appearance="ghost"
+        onClick={() => dispatch(deleteTask(task.id))}
+        style={{ marginTop: '8px', color: 'red' }}
+      >
+        Удалить
       </Button>
     </Card>
   );

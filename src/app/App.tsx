@@ -1,16 +1,15 @@
 import { Routes, Route } from 'react-router-dom';
 import { HomePage } from '@pages/home/HomePage';
 import { TaskDetailPage } from '@pages/task-details/TaskDetailPage';
-import { TaskProvider } from '@entities/task/model/TaskContext';
+import { TaskCreatePage } from '@pages/task-create/TaskCreatePage';
 
 function App() {
   return (
-    <TaskProvider>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/task/:id" element={<TaskDetailPage />} />
-      </Routes>
-    </TaskProvider>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/task/:id" element={<TaskDetailPage />} />
+      <Route path="/task/new" element={<TaskCreatePage />} />
+    </Routes>
   );
 }
 

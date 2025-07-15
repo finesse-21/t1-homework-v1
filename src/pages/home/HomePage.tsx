@@ -1,12 +1,14 @@
-import { useState, useMemo } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import styled from 'styled-components';
 import { T, Button } from '@admiral-ds/react-ui';
-import { useTasks } from '@entities/task/model/TaskContext';
+import { useNavigate } from 'react-router-dom';
 import { TaskList } from '@widgets/task-list/TaskList';
 import { LayoutWrapper } from '@app/ui/LayoutWrapper';
 import { SelectFieldBlock } from '@shared/ui/SelectFieldBlock';
 import { STATUSES, CATEGORIES, PRIORITIES } from '@entities/config/taskOptions';
 import { filterTasks } from '@entities/task/lib/filterTasks';
+import { useAppDispatch, useAppSelector } from '@shared/lib/hooks';
+import { fetchTasks } from '@entities/task/model/taskSlice';
 
 const TitleWrapper = styled.div`
   display: flex;
@@ -43,7 +45,9 @@ const FilterContainer = styled.div`
 `;
 
 export const HomePage = () => {
-  const { tasks } = useTasks();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const tasks = useAppSelector((state) => state.tasks.tasks);
   const [isFilterVisible, setIsFilterVisible] = useState(false);
 
   const [filters, setFilters] = useState({
@@ -51,6 +55,10 @@ export const HomePage = () => {
     category: 'All',
     priority: 'All',
   });
+
+  useEffect(() => {
+    dispatch(fetchTasks());
+  }, [dispatch]);
 
   const handleFilterChange = (field: keyof typeof filters, value: string) => {
     setFilters((prev) => ({ ...prev, [field]: value }));
@@ -66,10 +74,19 @@ export const HomePage = () => {
     <LayoutWrapper>
       <TitleWrapper>
         <Title font="Header/H1">Менеджер задач</Title>
-        <Button appearance="primary" dimension="s" onClick={() => setIsFilterVisible((v) => !v)}>
-          {isFilterVisible ? 'Скрыть фильтры' : 'Фильтры'}
+        <Button appearance="primary" dimension="s" onClick={() => navigate('/task/new')}>
+          Создать задачу
         </Button>
       </TitleWrapper>
+
+      <Button
+        appearance="secondary"
+        dimension="s"
+        onClick={() => setIsFilterVisible((v) => !v)}
+        style={{ marginBottom: '16px' }}
+      >
+        {isFilterVisible ? 'Скрыть фильтры' : 'Фильтры'}
+      </Button>
 
       {isFilterVisible && (
         <FilterContainer>
@@ -77,26 +94,23 @@ export const HomePage = () => {
             label="Статус"
             value={filters.status}
             options={STATUSES}
-            onChange={(v) => handleFilterChange('status', v)}
+            onChange={(v: string) => handleFilterChange('status', v)}
             allowAll
           />
-
           <SelectFieldBlock
             label="Категория"
             value={filters.category}
             options={CATEGORIES}
-            onChange={(v) => handleFilterChange('category', v)}
+            onChange={(v: string) => handleFilterChange('category', v)}
             allowAll
           />
-
           <SelectFieldBlock
             label="Приоритет"
             value={filters.priority}
             options={PRIORITIES}
-            onChange={(v) => handleFilterChange('priority', v)}
+            onChange={(v: string) => handleFilterChange('priority', v)}
             allowAll
           />
-
           <Button appearance="secondary" onClick={resetFilters}>
             Сбросить
           </Button>

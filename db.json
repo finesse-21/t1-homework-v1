@@ -1,0 +1,31 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Сделать 1 домашнее задание в ИТ-Лагере",
+      "description": "Создать данный менеджер задач",
+      "category": "Bug",
+      "status": "To Do",
+      "priority": "High",
+      "createdAt": "2025-07-10T09:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "title": "Поучавствовать в 1 воркшопе",
+      "description": "Перед этим сделать 1 дз",
+      "category": "Feature",
+      "status": "In Progress",
+      "priority": "Medium",
+      "createdAt": "2025-07-11T09:00:00.000Z"
+    },
+    {
+      "id": "5",
+      "title": "Пройти на стажировку в Т1",
+      "description": "",
+      "category": "Refactor",
+      "status": "In Progress",
+      "priority": "High",
+      "createdAt": "2025-07-14T09:00:00.000Z"
+    }
+  ]
+}

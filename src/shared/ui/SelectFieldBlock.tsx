@@ -12,7 +12,9 @@ export const SelectFieldBlock = ({ label, value, options, onChange, allowAll }: 
   <SelectField label={label} value={value} onChange={(e) => onChange(e.target.value)}>
     {allowAll && <Option value="All">Все</Option>}
     {options.map((opt) => (
-      <Option key={opt} value={opt}>{opt}</Option>
+      <Option key={opt} value={opt}>
+        {opt}
+      </Option>
     ))}
   </SelectField>
 );

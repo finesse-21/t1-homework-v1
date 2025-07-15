@@ -1,3 +1,4 @@
+export const __vite_touch = true;
 export type TaskCategory = 'Bug' | 'Feature' | 'Documentation' | 'Refactor' | 'Test';
 export type TaskStatus = 'To Do' | 'In Progress' | 'Done';
 export type TaskPriority = 'Low' | 'Medium' | 'High';
@@ -9,4 +10,5 @@ export interface ITask {
   category: TaskCategory;
   status: TaskStatus;
   priority: TaskPriority;
+  createdAt: string;
 }

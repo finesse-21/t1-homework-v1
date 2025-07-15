@@ -10,7 +10,6 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
 
 a {
@@ -51,6 +50,18 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.delete-icon {
+  transition:
+    fill 0.2s ease,
+    stroke 0.2s ease;
+  stroke: var(--color-neutral);
+}
+
+.delete-icon:hover {
+  stroke: red; /* или любой hover-цвет */
+  cursor: pointer;
 }
 
 @media (prefers-color-scheme: light) {

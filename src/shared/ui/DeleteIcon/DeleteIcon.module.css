@@ -1,0 +1,17 @@
+.deleteIcon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transition: stroke 0.2s ease;
+}
+
+.deleteIcon path {
+  fill: blue;
+}
+
+.deleteIcon:hover path {
+  fill: #ff0000;
+}

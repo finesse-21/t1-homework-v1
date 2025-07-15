@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { T, TextField, Button } from '@admiral-ds/react-ui';
-import { useTasks } from '../../entities/task/model/TaskContext';
-import type { ITask } from '../../entities/task/model/task';
-import { CATEGORIES, STATUSES, PRIORITIES } from '../../entities/config/taskOptions';
-import { SelectFieldBlock } from '../../shared/ui/SelectFieldBlock';
-import { Card } from '../../shared/ui/Card';
+import { useTasks } from '@entities/task/model/TaskContext';
+import type { ITask } from '@entities/task/model/task';
+import { CATEGORIES, STATUSES, PRIORITIES } from '@entities/config/taskOptions';
+import { SelectFieldBlock } from '@shared/ui/SelectFieldBlock';
+import { Card } from '@shared/ui/Card';
 
 const ButtonGroup = styled.div`
   display: flex;

@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
-import { HomePage } from '../pages/home/HomePage';
-import { TaskDetailPage } from '../pages/task-details/TaskDetailPage';
-import { TaskProvider } from '../entities/task/model/TaskContext';
+import { HomePage } from '@pages/home/HomePage';
+import { TaskDetailPage } from '@pages/task-details/TaskDetailPage';
+import { TaskProvider } from '@entities/task/model/TaskContext';
 
 function App() {
   return (

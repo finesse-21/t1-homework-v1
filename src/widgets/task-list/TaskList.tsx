@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { TaskItem } from '../../entities/task/ui/TaskItem';
-import type { ITask } from '../../entities/task/model/task';
+import { TaskItem } from '@entities/task/ui/TaskItem';
+import type { ITask } from '@entities/task/model/task';
 
 const TaskGrid = styled.div`
   display: flex;

@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { T, Tag, Button } from '@admiral-ds/react-ui';
-import type { ITask } from '../model/task';
-import { Card } from '../../../shared/ui/Card';
-import { priorityToColor } from '../lib/priorityToColor';
+import type { ITask } from '@entities/task/model/task';
+import { Card } from '@shared/ui/Card';
+import { priorityToColor } from '@entities/task/lib/priorityToColor';
 
 const TagsWrapper = styled.div`
   display: flex;

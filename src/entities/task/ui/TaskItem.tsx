@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { T, Tag, Button } from '@admiral-ds/react-ui';
+import { T, Tag } from '@admiral-ds/react-ui';
 import type { ITask } from '@entities/task/model/task';
 import { Card } from '@shared/ui/Card';
 import { priorityToColor } from '@entities/task/lib/priorityToColor';
@@ -44,6 +44,16 @@ export const TaskItem = ({ task }: TaskItemProps) => {
         <Tag kind={priorityToColor(task.priority)}>{task.priority}</Tag>
       </TagsWrapper>
       <T font="Body/Body 2 Long">Дата создания: {format(new Date(task.createdAt), 'dd.MM.yyyy')}</T>
+      <T
+        font="Caption/Caption 1"
+        style={{
+          color: 'rgba(0, 0, 0, 0.4)',
+          marginTop: 'auto',
+          paddingTop: '8px',
+        }}
+      >
+        Нажмите для редактирования
+      </T>
     </Card>
   );
 };

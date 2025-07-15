@@ -80,7 +80,7 @@ export const HomePage = () => {
       </TitleWrapper>
 
       <Button
-        appearance="secondary"
+        appearance="primary"
         dimension="s"
         onClick={() => setIsFilterVisible((v) => !v)}
         style={{ marginBottom: '16px' }}

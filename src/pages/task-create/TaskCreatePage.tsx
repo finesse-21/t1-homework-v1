@@ -18,6 +18,7 @@ export const TaskCreatePage = () => {
     status: 'To Do',
     category: 'Feature',
     priority: 'Medium',
+    createdAt: new Date().toISOString(),
   });
 
   const handleSave = () => {

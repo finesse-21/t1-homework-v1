@@ -2,41 +2,30 @@
   "tasks": [
     {
       "id": "1",
-      "title": "Сделать 1 домашнее задание в ИТ-Лагере",
-      "description": "Создать данный менеджер задач",
-      "category": "Bug",
+      "title": "Создать Redux Store",
+      "description": "Настроить Redux Toolkit и actions",
+      "category": "Feature",
       "status": "To Do",
-      "priority": "High"
+      "priority": "High",
+      "createdAt": "2025-07-10T09:00:00.000Z"
     },
     {
       "id": "2",
-      "title": "Поучавствовать в 1 воркшопе",
-      "description": "Перед этим сделать 1 дз",
-      "category": "Feature",
-      "status": "In Progress",
-      "priority": "Medium"
-    },
-    {
-      "id": "3",
-      "title": "Пройти весь курс в лагере",
-      "description": "",
+      "title": "Подключить json-server",
+      "description": "Имитация backend",
       "category": "Documentation",
-      "status": "Done",
-      "priority": "Low"
-    },
-    {
-      "id": "4",
-      "title": "Написать 1 тест по frontend",
-      "category": "Test",
-      "status": "To Do",
-      "priority": "Medium"
-    },
-    {
-      "id": "5",
-      "title": "Пройти на стажировку в Т1",
-      "category": "Refactor",
       "status": "In Progress",
-      "priority": "High"
+      "priority": "Medium",
+      "createdAt": "2025-12-05T21:00:00.000Z"
+    },
+    {
+      "id": "986033e7-2a04-410c-9a79-da7d4c0af404",
+      "title": "ecwcwee",
+      "description": "",
+      "status": "To Do",
+      "category": "Feature",
+      "priority": "Medium",
+      "createdAt": "2025-07-15T21:35:45.410Z"
     }
   ]
 }

@@ -6,6 +6,7 @@ import { Card } from '@shared/ui/Card';
 import { priorityToColor } from '@entities/task/lib/priorityToColor';
 import { useAppDispatch } from '@shared/lib/hooks';
 import { deleteTask } from '@entities/task/model/taskSlice';
+import { format } from 'date-fns';
 
 const TagsWrapper = styled.div`
   display: flex;
@@ -30,6 +31,7 @@ export const TaskItem = ({ task }: TaskItemProps) => {
         <Tag kind="primary">{task.category}</Tag>
         <Tag kind={priorityToColor(task.priority)}>{task.priority}</Tag>
       </TagsWrapper>
+      <T font="Body/Body 2 Long">Дата создания: {format(new Date(task.createdAt), 'dd.MM.yyyy')}</T>
       <Button
         dimension="s"
         appearance="secondary"

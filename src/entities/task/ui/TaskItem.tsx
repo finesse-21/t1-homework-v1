@@ -7,6 +7,8 @@ import { priorityToColor } from '@entities/task/lib/priorityToColor';
 import { useAppDispatch } from '@shared/lib/hooks';
 import { deleteTask } from '@entities/task/model/taskSlice';
 import { format } from 'date-fns';
+import { SystemDeleteOutline } from '@admiral-ds/icons';
+import styles from '@shared/ui/DeleteIcon/DeleteIcon.module.css';
 
 const TagsWrapper = styled.div`
   display: flex;
@@ -23,7 +25,17 @@ export const TaskItem = ({ task }: TaskItemProps) => {
   const dispatch = useAppDispatch();
 
   return (
-    <Card maxWidth="350px">
+    <Card
+      style={{ position: 'relative', cursor: 'pointer', maxWidth: '400px' }}
+      onClick={() => navigate(`/task/${task.id}`)}
+    >
+      <SystemDeleteOutline
+        className={styles.deleteIcon}
+        onClick={(e: React.MouseEvent) => {
+          e.stopPropagation();
+          dispatch(deleteTask(task.id));
+        }}
+      />
       <T font="Subtitle/Subtitle 1">{task.title}</T>
       {task.description && <T font="Body/Body 2 Long">{task.description}</T>}
       <TagsWrapper>
@@ -32,23 +44,6 @@ export const TaskItem = ({ task }: TaskItemProps) => {
         <Tag kind={priorityToColor(task.priority)}>{task.priority}</Tag>
       </TagsWrapper>
       <T font="Body/Body 2 Long">Дата создания: {format(new Date(task.createdAt), 'dd.MM.yyyy')}</T>
-      <Button
-        dimension="s"
-        appearance="secondary"
-        onClick={() => navigate(`/task/${task.id}`)}
-        style={{ marginTop: 'auto' }}
-      >
-        Редактировать
-      </Button>
-
-      <Button
-        dimension="s"
-        appearance="ghost"
-        onClick={() => dispatch(deleteTask(task.id))}
-        style={{ marginTop: '8px', color: 'red' }}
-      >
-        Удалить
-      </Button>
     </Card>
   );
 };

@@ -1,22 +1,22 @@
 {
   "tasks": [
     {
-      "id": "1",
-      "title": "Создать Redux Store",
-      "description": "Настроить Redux Toolkit и actions",
-      "category": "Feature",
+      "id": "06d8",
+      "title": "ауолтвмолмв",
+      "description": "свшвовсвс",
       "status": "To Do",
-      "priority": "High",
-      "createdAt": "2025-07-10T09:00:00.000Z"
+      "category": "Feature",
+      "priority": "Medium",
+      "createdAt": "2025-07-15T22:39:08.319Z"
     },
     {
-      "id": "2",
-      "title": "Подключить json-server",
-      "description": "Имитация backend",
-      "category": "Documentation",
-      "status": "In Progress",
+      "id": "1886",
+      "title": "с",
+      "description": "",
+      "status": "To Do",
+      "category": "Feature",
       "priority": "Medium",
-      "createdAt": "2025-12-05T21:00:00.000Z"
+      "createdAt": "2025-07-15T22:39:12.968Z"
     }
   ]
 }

@@ -17,15 +17,6 @@
       "status": "In Progress",
       "priority": "Medium",
       "createdAt": "2025-12-05T21:00:00.000Z"
-    },
-    {
-      "id": "986033e7-2a04-410c-9a79-da7d4c0af404",
-      "title": "ecwcwee",
-      "description": "",
-      "status": "To Do",
-      "category": "Feature",
-      "priority": "Medium",
-      "createdAt": "2025-07-15T21:35:45.410Z"
     }
   ]
 }

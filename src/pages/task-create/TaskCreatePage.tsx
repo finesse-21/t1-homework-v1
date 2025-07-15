@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import type { ITask } from '@entities/task/model/task';
 import { createTask } from '@entities/task/model/taskSlice';
 import { useAppDispatch } from '@shared/lib/hooks';
@@ -11,8 +10,7 @@ export const TaskCreatePage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [task, setTask] = useState<ITask>({
-    id: uuidv4(),
+  const [task, setTask] = useState<Omit<ITask, 'id'>>({
     title: '',
     description: '',
     status: 'To Do',
@@ -22,8 +20,9 @@ export const TaskCreatePage = () => {
   });
 
   const handleSave = () => {
-    dispatch(createTask(task));
-    navigate('/');
+    dispatch(createTask(task))
+      .unwrap()
+      .then(() => navigate('/'));
   };
 
   return (

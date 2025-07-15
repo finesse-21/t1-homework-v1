@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { T, Tag, Button} from '@admiral-ds/react-ui';
-import type { ITask } from '../types/task';
-import { Card } from './ui/Card';
-import { priorityToColor } from '../utils/priorityToColor';
+import { T, Tag, Button } from '@admiral-ds/react-ui';
+import type { ITask } from '../model/task';
+import { Card } from '../../../shared/ui/Card';
+import { priorityToColor } from '../lib/priorityToColor';
 
 const TagsWrapper = styled.div`
   display: flex;
@@ -17,7 +17,6 @@ interface TaskItemProps {
 
 export const TaskItem = ({ task }: TaskItemProps) => {
   const navigate = useNavigate();
-
 
   return (
     <Card maxWidth="350px">

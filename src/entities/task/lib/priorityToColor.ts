@@ -1,4 +1,4 @@
-import type { TaskPriority } from '../types/task';
+import type { TaskPriority } from '../model/task';
 import type { TagKind } from '@admiral-ds/react-ui';
 
 export const priorityToColor = (priority: TaskPriority): TagKind => {

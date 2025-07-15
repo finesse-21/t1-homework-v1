@@ -1,12 +1,12 @@
 import { useState, useMemo } from 'react';
 import styled from 'styled-components';
 import { T, Button } from '@admiral-ds/react-ui';
-import { useTasks } from '../context/TaskContext';
-import { TaskList } from '../components/TaskList';
-import { LayoutWrapper } from '../components/LayoutWrapper';
-import { SelectFieldBlock } from '../components/SelectFieldBlock';
-import { STATUSES, CATEGORIES, PRIORITIES } from '../constants/taskOptions';
-import { filterTasks } from '../utils/filterTasks';
+import { useTasks } from '../../entities/task/model/TaskContext';
+import { TaskList } from '../../widgets/task-list/TaskList';
+import { LayoutWrapper } from '../../app/ui/LayoutWrapper';
+import { SelectFieldBlock } from '../../shared/ui/SelectFieldBlock';
+import { STATUSES, CATEGORIES, PRIORITIES } from '../../entities/config/taskOptions';
+import { filterTasks } from '../../entities/task/lib/filterTasks';
 
 const TitleWrapper = styled.div`
   display: flex;
@@ -17,7 +17,7 @@ const TitleWrapper = styled.div`
   margin-bottom: 32px;
 
   @media (max-width: 600px) {
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center;
     gap: 16px;
     margin-bottom: 24px;
@@ -60,19 +60,13 @@ export const HomePage = () => {
     setFilters({ status: 'All', category: 'All', priority: 'All' });
   };
 
-
   const filteredTasks = useMemo(() => filterTasks(tasks, filters), [tasks, filters]);
-
 
   return (
     <LayoutWrapper>
       <TitleWrapper>
         <Title font="Header/H1">Менеджер задач</Title>
-        <Button
-          appearance="primary"
-          dimension="s"
-          onClick={() => setIsFilterVisible((v) => !v)}
-        >
+        <Button appearance="primary" dimension="s" onClick={() => setIsFilterVisible((v) => !v)}>
           {isFilterVisible ? 'Скрыть фильтры' : 'Фильтры'}
         </Button>
       </TitleWrapper>

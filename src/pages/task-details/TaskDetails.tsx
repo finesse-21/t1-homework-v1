@@ -1,16 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import {
-  T,
-  TextField,
-  Button,
-} from '@admiral-ds/react-ui';
-import { useTasks } from '../context/TaskContext';
-import type { ITask } from '../types/task';
-import { CATEGORIES, STATUSES, PRIORITIES } from '../constants/taskOptions';
-import { SelectFieldBlock } from './SelectFieldBlock';
-import { Card } from './ui/Card';
+import { T, TextField, Button } from '@admiral-ds/react-ui';
+import { useTasks } from '../../entities/task/model/TaskContext';
+import type { ITask } from '../../entities/task/model/task';
+import { CATEGORIES, STATUSES, PRIORITIES } from '../../entities/config/taskOptions';
+import { SelectFieldBlock } from '../../shared/ui/SelectFieldBlock';
+import { Card } from '../../shared/ui/Card';
 
 const ButtonGroup = styled.div`
   display: flex;
@@ -59,12 +55,7 @@ export const TaskDetails = ({ taskId }: TaskDetailsProps) => {
   };
 
   return (
-    <Card
-      as="form"
-      onSubmit={handleSubmit}
-      padding="40px"
-      maxWidth="1000px"
-    >
+    <Card as="form" onSubmit={handleSubmit} padding="40px" maxWidth="1000px">
       <TextField
         label="Заголовок"
         value={task.title}
@@ -104,18 +95,10 @@ export const TaskDetails = ({ taskId }: TaskDetailsProps) => {
       </FieldsGrid>
 
       <ButtonGroup>
-        <Button
-          type="submit"
-          appearance="primary"
-          disabled={!task.title.trim()}
-        >
+        <Button type="submit" appearance="primary" disabled={!task.title.trim()}>
           Сохранить
         </Button>
-        <Button
-          type="button"
-          appearance="secondary"
-          onClick={() => navigate('/')}
-        >
+        <Button type="button" appearance="secondary" onClick={() => navigate('/')}>
           Отмена
         </Button>
       </ButtonGroup>

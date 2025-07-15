@@ -13,7 +13,7 @@ Task Manager — это простое одностраничное прилож
 
 ---
 
-##  Технологии
+## Технологии
 
 - **React + TypeScript**
 - **Vite** — сборщик проекта
@@ -42,7 +42,7 @@ t1-homework-v1/
 ├── vite.config.ts
 └── tsconfig.json
 
-````
+```
 
 ---
 
@@ -53,7 +53,7 @@ t1-homework-v1/
 ```bash
 git clone https://github.com/finesse-21/t1-homework-v1.git
 cd t1-homework-v1
-````
+```
 
 ### 2. Установи зависимости
 

@@ -17,4 +17,9 @@ export const Card = styled.div<CardProps>`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: scale(1.03);
+  }
 `;

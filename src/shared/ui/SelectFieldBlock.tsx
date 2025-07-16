@@ -21,7 +21,12 @@ interface Props {
  * Используется для выбора значения из списка с возможностью добавить опцию "Все".
  */
 export const SelectFieldBlock = ({ label, value, options, onChange, allowAll }: Props) => (
-  <SelectField label={label} value={value} onChange={(e) => onChange(e.target.value)}>
+  <SelectField
+    label={label}
+    value={value}
+    onChange={(e) => onChange(e.target.value)}
+    style={{ width: 150 }}
+  >
     {allowAll && <Option value="All">Все</Option>}
     {options.map((opt) => (
       <Option key={opt} value={opt}>

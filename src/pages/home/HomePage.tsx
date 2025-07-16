@@ -36,6 +36,10 @@ const FiltersButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   margin: 16px 0;
+
+  @media (max-width: 600px) {
+    justify-content: center;
+  }
 `;
 
 /**

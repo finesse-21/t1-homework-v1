@@ -8,7 +8,8 @@ export const LayoutWrapper = styled.div`
   min-height: 100vh;
   width: 100%;
   max-width: 1440px;
-  padding: 0; /* убираем паддинг здесь */
+  padding: 0 16px;
+  padding: 0;
   box-sizing: border-box;
   margin: 0 auto;
   background-color: #fff;
@@ -21,7 +22,7 @@ export const LayoutWrapper = styled.div`
 export const TitleWrapperContainer = styled.div`
   width: 100%;
   background-color: #102040;
-  padding: 32px 24px 0 24px; /* верхний и боковые отступы */
+  padding: 32px 24px 0 24px;
   border-radius: 24px 24px 0 0;
   box-sizing: border-box;
 `;

@@ -7,11 +7,15 @@ import { TaskDetailsForm } from '@features/edit-task/ui/TaskDetailsForm';
 import { updateTask } from '@entities/task/model/taskSlice';
 import type { ITask } from '@entities/task/model/task';
 
+/**
+ * Страница редактирования задачи.
+ */
 export const TaskDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  // Получаем задачу из Redux store по id
   const taskFromStore: ITask | undefined = useAppSelector((state: RootState) =>
     state.tasks.tasks.find((t: ITask) => t.id === id),
   );
@@ -28,6 +32,9 @@ export const TaskDetailPage = () => {
 
   if (!task) return null;
 
+  /**
+   * Сохраняет изменения задачи и возвращает на главную страницу.
+   */
   const handleSave = () => {
     dispatch(updateTask(task));
     navigate('/');

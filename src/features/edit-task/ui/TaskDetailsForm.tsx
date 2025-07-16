@@ -7,18 +7,27 @@ import type { ITask } from '@entities/task/model/task';
 import { DateField } from '@admiral-ds/react-ui';
 import { format, parseISO } from 'date-fns';
 
+/**
+ * Стили для группы кнопок формы.
+ */
 const ButtonGroup = styled.div`
   display: flex;
   gap: 16px;
   margin-top: 24px;
 `;
 
+/**
+ * Стили для сетки полей формы.
+ */
 const FieldsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
 `;
 
+/**
+ * Пропсы для формы деталей задачи.
+ */
 interface Props {
   task: ITask;
   onChange: (task: ITask) => void;
@@ -26,7 +35,15 @@ interface Props {
   onCancel: () => void;
 }
 
+/**
+ * Форма для просмотра и редактирования деталей задачи.
+ */
 export const TaskDetailsForm = ({ task, onChange, onSave, onCancel }: Props) => {
+  /**
+   * Обновляет поле задачи.
+   * @param field - поле задачи
+   * @param value - новое значение
+   */
   const handleChange = (field: keyof ITask, value: string) => {
     onChange({ ...task, [field]: value });
   };

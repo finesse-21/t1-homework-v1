@@ -10,16 +10,25 @@ import { format } from 'date-fns';
 import { SystemDeleteOutline } from '@admiral-ds/icons';
 import styles from '@shared/ui/DeleteIcon/DeleteIcon.module.css';
 
+/**
+ * Обёртка для тегов задачи.
+ */
 const TagsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 `;
 
+/**
+ * Пропсы для компонента TaskItem.
+ */
 interface TaskItemProps {
   task: ITask;
 }
 
+/**
+ * Компонент для отображения одной задачи в списке.
+ */
 export const TaskItem = ({ task }: TaskItemProps) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();

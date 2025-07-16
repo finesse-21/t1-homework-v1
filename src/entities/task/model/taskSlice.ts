@@ -4,38 +4,57 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:3001/tasks';
 
+/**
+ * Асинхронный экшен для получения всех задач.
+ */
 export const fetchTasks = createAsyncThunk('tasks/fetchAll', async () => {
   const response = await axios.get<ITask[]>(API_URL);
   return response.data;
 });
 
+/**
+ * Асинхронный экшен для создания новой задачи.
+ */
 export const createTask = createAsyncThunk('tasks/create', async (task: Omit<ITask, 'id'>) => {
   const response = await axios.post<ITask>(API_URL, task);
   return response.data;
 });
 
+/**
+ * Асинхронный экшен для обновления задачи.
+ */
 export const updateTask = createAsyncThunk('tasks/update', async (task: ITask) => {
   const response = await axios.put<ITask>(`${API_URL}/${task.id}`, task);
   return response.data;
 });
 
+/**
+ * Асинхронный экшен для удаления задачи.
+ */
 export const deleteTask = createAsyncThunk('tasks/delete', async (id: string) => {
   await axios.delete(`${API_URL}/${id}`);
   return id;
 });
 
+/**
+ * Интерфейс состояния задач.
+ */
 interface TaskState {
   tasks: ITask[];
   loading: boolean;
   error: string | null;
 }
 
+/** Начальное состояние задач */
 const initialState: TaskState = {
   tasks: [],
   loading: false,
   error: null,
 };
 
+/**
+ * Слайс задач с обработкой асинхронных экшенов.
+ */
 const taskSlice = createSlice({
   name: 'tasks',
   initialState,

@@ -44,30 +44,52 @@ const FilterContainer = styled.div`
   border: 1px solid #d1d4d6;
 `;
 
+/**
+ * Главная страница приложения — менеджер задач.
+ * Позволяет просматривать, фильтровать и создавать задачи.
+ * Использует redux для получения задач и отображает TaskList.
+ */
 export const HomePage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const tasks = useAppSelector((state) => state.tasks.tasks);
   const [isFilterVisible, setIsFilterVisible] = useState(false);
 
+  /**
+   * Локальное состояние фильтров задач.
+   */
   const [filters, setFilters] = useState({
     status: 'All',
     category: 'All',
     priority: 'All',
   });
 
+  /**
+   * Загружает задачи при монтировании компонента.
+   */
   useEffect(() => {
     dispatch(fetchTasks());
   }, [dispatch]);
 
+  /**
+   * Обновляет выбранный фильтр.
+   * @param field - поле фильтра
+   * @param value - новое значение
+   */
   const handleFilterChange = (field: keyof typeof filters, value: string) => {
     setFilters((prev) => ({ ...prev, [field]: value }));
   };
 
+  /**
+   * Сбрасывает все фильтры к значениям "All".
+   */
   const resetFilters = () => {
     setFilters({ status: 'All', category: 'All', priority: 'All' });
   };
 
+  /**
+   * Мемоизированный список задач, отфильтрованный по выбранным фильтрам.
+   */
   const filteredTasks = useMemo(() => filterTasks(tasks, filters), [tasks, filters]);
 
   return (

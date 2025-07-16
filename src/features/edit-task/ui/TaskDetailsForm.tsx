@@ -29,7 +29,7 @@ const FieldsGrid = styled.div`
  * Пропсы для формы деталей задачи.
  */
 interface Props {
-  task: ITask;
+  task: Partial<ITask>;
   onChange: (task: ITask) => void;
   onSave: () => void;
   onCancel: () => void;
@@ -45,7 +45,7 @@ export const TaskDetailsForm = ({ task, onChange, onSave, onCancel }: Props) => 
    * @param value - новое значение
    */
   const handleChange = (field: keyof ITask, value: string) => {
-    onChange({ ...task, [field]: value });
+    onChange({ ...task, [field]: value } as ITask);
   };
 
   return (
@@ -80,21 +80,21 @@ export const TaskDetailsForm = ({ task, onChange, onSave, onCancel }: Props) => 
       <FieldsGrid>
         <SelectFieldBlock
           label="Статус"
-          value={task.status}
+          value={task.status ?? ''}
           options={STATUSES}
           onChange={(v: string) => handleChange('status', v)}
         />
 
         <SelectFieldBlock
           label="Категория"
-          value={task.category}
+          value={task.category ?? ''}
           options={CATEGORIES}
           onChange={(v: string) => handleChange('category', v)}
         />
 
         <SelectFieldBlock
           label="Приоритет"
-          value={task.priority}
+          value={task.priority ?? ''}
           options={PRIORITIES}
           onChange={(v: string) => handleChange('priority', v)}
         />
@@ -111,7 +111,7 @@ export const TaskDetailsForm = ({ task, onChange, onSave, onCancel }: Props) => 
       />
 
       <ButtonGroup>
-        <Button type="submit" appearance="primary" disabled={!task.title.trim()}>
+        <Button type="submit" appearance="primary" disabled={!task.title?.trim()}>
           Сохранить
         </Button>
         <Button type="button" appearance="secondary" onClick={onCancel}>

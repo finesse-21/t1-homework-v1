@@ -57,6 +57,7 @@ export const TaskDetailsForm = ({ task, onChange, onSave, onCancel }: Props) => 
       }}
       padding="40px"
       maxWidth="1000px"
+      disableHover
     >
       <TextField
         label="Заголовок"

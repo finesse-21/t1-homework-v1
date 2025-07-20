@@ -3,6 +3,7 @@ import styled from 'styled-components';
 interface CardProps {
   padding?: string;
   maxWidth?: string;
+  disableHover?: boolean;
 }
 
 export const Card = styled.div<CardProps>`
@@ -19,7 +20,9 @@ export const Card = styled.div<CardProps>`
   gap: 16px;
   transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 
-  &:hover {
-    transform: scale(1.03);
-  }
+  ${({ disableHover }) =>
+    !disableHover &&
+    `&:hover {
+      transform: scale(1.03);
+    }`}
 `;

@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
 import type { ITask } from './task';
 import { taskApi } from '../api/taskApi';
+import { type SearchParams } from '@shared/api/fakeApi';
 
-export const fetchTasks = createAsyncThunk('tasks/fetchAll', async () => {
-  return await taskApi.getAll();
+export const fetchTasks = createAsyncThunk('tasks/fetchAll', async (params: SearchParams = {}) => {
+  return await taskApi.getAll(params);
 });
 
 export const createTask = createAsyncThunk('tasks/create', async (task: Omit<ITask, 'id'>) => {

@@ -1,8 +1,8 @@
-import { fakeApi } from '@shared/api/fakeApi';
+import { fakeApi, type SearchParams } from '@shared/api/fakeApi';
 import type { ITask } from '../model/task';
 
 export const taskApi = {
-  getAll: () => fakeApi.getAll(),
+  getAll: (params: SearchParams = {}) => fakeApi.getAll(params),
   getById: (id: string) => fakeApi.getById(id),
   create: (task: Omit<ITask, 'id'>) => fakeApi.create(task),
   update: (task: ITask) => fakeApi.update(task),

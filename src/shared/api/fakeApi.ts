@@ -3,6 +3,11 @@ import type { ITask } from '@entities/task/model/task';
 
 const STORAGE_KEY = 'tasks';
 
+export interface SearchParams {
+  title?: string;
+  date?: string;
+}
+
 const read = (): ITask[] => {
   try {
     return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
@@ -16,8 +21,19 @@ const write = (tasks: ITask[]) => {
 };
 
 export const fakeApi = {
-  getAll: async (): Promise<ITask[]> => {
-    return read();
+  getAll: async (params: SearchParams = {}): Promise<ITask[]> => {
+    let tasks = read();
+    const { title, date } = params;
+
+    if (title) {
+      tasks = tasks.filter((task) => task.title.toLowerCase().includes(title.toLowerCase()));
+    }
+
+    if (date) {
+      tasks = tasks.filter((task) => task.createdAt.startsWith(date));
+    }
+
+    return tasks;
   },
   getById: async (id: string): Promise<ITask | undefined> => {
     return read().find((task) => task.id === id);

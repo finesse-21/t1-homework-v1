@@ -9,7 +9,7 @@ const TaskGrid = styled.div`
   justify-content: center;
   width: 100%;
   box-sizing: border-box;
-  padding: 0 16px;
+  padding: 0 16px 32px;
 `;
 
 interface TaskListProps {

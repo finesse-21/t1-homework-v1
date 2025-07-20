@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import type { ITask } from '@entities/task/model/task';
+import { parse, format } from 'date-fns';
 
 const STORAGE_KEY = 'tasks';
 
@@ -28,9 +29,14 @@ export const fakeApi = {
     if (title) {
       tasks = tasks.filter((task) => task.title.toLowerCase().includes(title.toLowerCase()));
     }
-
     if (date) {
-      tasks = tasks.filter((task) => task.createdAt.startsWith(date));
+      const parsedFilterDate = parse(date, 'dd.MM.yyyy', new Date());
+      const filterDateStr = format(parsedFilterDate, 'yyyy-MM-dd');
+
+      tasks = tasks.filter((task) => {
+        const taskDate = format(new Date(task.createdAt), 'yyyy-MM-dd');
+        return taskDate === filterDateStr;
+      });
     }
 
     return tasks;

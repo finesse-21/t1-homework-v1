@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { T, Tag } from '@admiral-ds/react-ui';
@@ -8,6 +9,7 @@ import { useAppDispatch } from '@shared/lib/hooks';
 import { deleteTask } from '@entities/task/model/taskSlice';
 import { format } from 'date-fns';
 import { SystemDeleteOutline } from '@admiral-ds/icons';
+import { Modal } from '@shared/ui/Modal';
 import styles from '@shared/ui/DeleteIcon/DeleteIcon.module.css';
 
 /**
@@ -32,19 +34,32 @@ interface TaskItemProps {
 export const TaskItem = ({ task }: TaskItemProps) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const handleDeleteClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsModalVisible(true);
+  };
+
+  const confirmDelete = () => {
+    dispatch(deleteTask(task.id));
+    setIsModalVisible(false);
+  };
+
+  const cancelDelete = () => {
+    setIsModalVisible(false);
+  };
 
   return (
     <Card
       style={{ position: 'relative', cursor: 'pointer', maxWidth: '400px' }}
-      onClick={() => navigate(`/task/${task.id}`)}
+      onClick={() => {
+        if (!isModalVisible) {
+          navigate(`/task/${task.id}`);
+        }
+      }}
     >
-      <SystemDeleteOutline
-        className={styles.deleteIcon}
-        onClick={(e: React.MouseEvent) => {
-          e.stopPropagation();
-          dispatch(deleteTask(task.id));
-        }}
-      />
+      <SystemDeleteOutline className={styles.deleteIcon} onClick={handleDeleteClick} />
       <T font="Subtitle/Subtitle 1">{task.title}</T>
       {task.description && <T font="Body/Body 2 Long">{task.description}</T>}
       <TagsWrapper>
@@ -63,6 +78,15 @@ export const TaskItem = ({ task }: TaskItemProps) => {
       >
         Нажмите для редактирования
       </T>
+
+      {isModalVisible && (
+        <Modal
+          message="Вы уверены, что хотите удалить эту задачу?"
+          onConfirm={confirmDelete}
+          onCancel={cancelDelete}
+          isOpen={isModalVisible}
+        />
+      )}
     </Card>
   );
 };

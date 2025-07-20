@@ -5,7 +5,7 @@ import { SelectFieldBlock } from '@shared/ui/SelectFieldBlock';
 import { CATEGORIES, STATUSES, PRIORITIES } from '@entities/config/taskOptions';
 import type { ITask } from '@entities/task/model/task';
 import { DateField } from '@admiral-ds/react-ui';
-import { format, parseISO } from 'date-fns';
+import { parse, formatISO, format, parseISO } from 'date-fns';
 
 /**
  * Стили для группы кнопок формы.
@@ -67,7 +67,6 @@ export const TaskDetailsForm = ({ task, onChange, onSave, onCancel }: Props) => 
         }
         required
       />
-
       <TextField
         label="Описание"
         placeholder="Опишите задачу подробнее..."
@@ -77,7 +76,6 @@ export const TaskDetailsForm = ({ task, onChange, onSave, onCancel }: Props) => 
         }
         style={{ minHeight: '120px' }}
       />
-
       <FieldsGrid>
         <SelectFieldBlock
           label="Статус"
@@ -102,15 +100,16 @@ export const TaskDetailsForm = ({ task, onChange, onSave, onCancel }: Props) => 
       </FieldsGrid>
       <DateField
         label="Дата создания"
-        value={task.createdAt ? format(parseISO(task.createdAt), 'yyyy-MM-dd') : ''}
-        onChange={(date) => {
-          if (date) {
-            handleChange('createdAt', new Date(date.target.value).toISOString());
+        value={task.createdAt ? format(parseISO(task.createdAt), 'dd.MM.yyyy') : ''}
+        onChange={(e) => {
+          const parsedDate = parse(e.target.value, 'dd.MM.yyyy', new Date());
+          if (!isNaN(parsedDate.getTime())) {
+            handleChange('createdAt', formatISO(parsedDate));
           }
         }}
+        placeholder="дд.мм.гггг"
         style={{ maxWidth: '280px' }}
       />
-
       <ButtonGroup>
         <Button type="submit" appearance="primary" disabled={!task.title?.trim()}>
           Сохранить
